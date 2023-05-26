@@ -1,0 +1,60 @@
+-Crear env: 
+py -m venv venv
+
+ALT + 92 = \
+
+-Avticar env
+.\venv\Scripts\activate
+
+-Iniciar proyecto de django
+django-admin startproject nombredelproyecto
+
+-Correr el server
+py manage.py runserver
+
+-iniciar app
+py manage.py startapp nombredelaapp
+
+-Crear archivo que describe la creacion de las tablas (hace uso de orm)
+py manage.py makemigrations polls
+
+-Tomar el archivo y ejecutarlo en la DB
+py manage.py migrate
+
+-Consola interactiva con la que se puede acceder al proyecto
+py manage.py shell
+
+-Crear registro (pregunta) desde la Consola
+q = Question(question_text="¿Cuál es el mejor curso de Platzi", pub_date=timezone.now())
+q.save()
+-Imprimir todos los objetos de la clase Question
+Question.objects.all()
+
+Método get
+Question.objects.get(pk=1)
+Método filter (arroja un iterable, lista)
+Question.objects.filter(pk=1)
+Question.objects.filter(question_text__startswith="¿Cuál")  #MÉTODO de busqueda __startswith
+Question.objects.filter(pub_date__year=timezone.now().year)  #__year
+
+Para ver más métodos de búsqueda: 
+https://docs.djangoproject.com/en/4.0/ref/models/querysets/#field-lookups
+
+Acceder al conjunto de respuestas con _set y con all todos los objetos
+q = Question.object.get(pk=1)
+q.choice_set.all()
+
+Crear respuestas con método create()
+q.choice_set.create(choice_text="", votes=0)
+
+Contar cuantas respuestas se tienen (metodo count)
+q.choice_set.count()
+
+Filtrar los choices de acuerdo al año
+Choice.objects.filter(quesion__pub_date__year=timezone.now.year)
+
+Crear super user de django
+py manage.py createsuperuser
+Rodro
+ro.dri.go.123@hotmail.com
+Fatmagul123
